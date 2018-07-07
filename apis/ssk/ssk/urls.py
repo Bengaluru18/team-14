@@ -33,6 +33,6 @@ v1_api.register(SocialWorkerResource())
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url(r'^blog/', include('myapp.urls')),
+#     url(r'^web/', include('appointment.urls')),
     url(r'^api/', include(v1_api.urls)),
 ]
