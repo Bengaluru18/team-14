@@ -21,4 +21,4 @@ def medi_view(request, id):
 
     }
     resp = requests.get("http://127.0.0.1:8000/api/v1/mediavailability/", params=params)
-    print(resp.json())
+    return resp.json()

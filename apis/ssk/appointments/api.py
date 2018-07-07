@@ -43,7 +43,11 @@ class AppointmentResource(ModelResource):
         queryset = Appointment.objects.all()
         authorization = Authorization()
         resource_name = "appointment"
-        filtering = {"medi": ALL_WITH_RELATIONS, "patient": ALL_WITH_RELATIONS}
+        filtering = {"medi": ALL_WITH_RELATIONS,
+                     "patient": ALL_WITH_RELATIONS,
+                     "start_time": ['gte', 'lte'],
+                     "end_time": ['gte', 'lte'],
+                     }
 
 
 class MediAvailabilityResource(ModelResource):
