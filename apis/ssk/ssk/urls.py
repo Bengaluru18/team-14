@@ -16,27 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from tastypie.api import Api
 
 from appointments.api import MediResource, PatientResource, AppointmentResource, MediAvailabilityResource, \
     ReceptionResource, SocialWorkerResource
 
-mediResource = MediResource()
-patientResource = PatientResource()
-appointmentResource = AppointmentResource()
-mediAvailabilityResource = MediAvailabilityResource()
-receptionResource = ReceptionResource()
-socialWorkerResource = SocialWorkerResource()
+
+v1_api = Api(api_name='v1')
+v1_api.register(MediResource())
+v1_api.register(PatientResource())
+v1_api.register(AppointmentResource())
+v1_api.register(MediAvailabilityResource())
+v1_api.register(ReceptionResource())
+v1_api.register(SocialWorkerResource())
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^blog/', include('myapp.urls')),
-    url(r'^api/', include(mediResource.urls)),
-
-    url(r'^api/', include(mediResource.urls)),
-    url(r'^api/', include(patientResource.urls)),
-    url(r'^api/', include(appointmentResource.urls)),
-    url(r'^api/', include(mediAvailabilityResource.urls)),
-    url(r'^api/', include(receptionResource.urls)),
-    url(r'^api/', include(socialWorkerResource.urls)),
+    url(r'^api/', include(v1_api.urls)),
 ]
