@@ -17,12 +17,26 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 
-from appointments.api import MediResource
+from appointments.api import MediResource, PatientResource, AppointmentResource, MediAvailabilityResource, \
+    ReceptionResource, SocialWorkerResource
 
 mediResource = MediResource()
+patientResource = PatientResource()
+appointmentResource = AppointmentResource()
+mediAvailabilityResource = MediAvailabilityResource()
+receptionResource = ReceptionResource()
+socialWorkerResource = SocialWorkerResource()
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^blog/', include('myapp.urls')),
     url(r'^api/', include(mediResource.urls)),
+
+    url(r'^api/', include(mediResource.urls)),
+    url(r'^api/', include(patientResource.urls)),
+    url(r'^api/', include(appointmentResource.urls)),
+    url(r'^api/', include(mediAvailabilityResource.urls)),
+    url(r'^api/', include(receptionResource.urls)),
+    url(r'^api/', include(socialWorkerResource.urls)),
 ]
