@@ -10,9 +10,9 @@ class Patient(models.Model):
     name = models.CharField(max_length=100)
     age = models.PositiveIntegerField()
     phone = models.CharField(max_length=10)
-    address = models.CharField(max_length=500)
-    disorder = models.CharField(max_length=500)
-    comment = models.CharField(max_length=500)
+    address = models.CharField(max_length=500, blank=True, default=None, null=True)
+    disorder = models.CharField(max_length=500, blank=True, default=None, null=True)
+    comment = models.CharField(max_length=500,  blank=True, default=None, null=True)
 
 
 class Medi(models.Model):
@@ -37,7 +37,7 @@ class Appointment(models.Model):
     confirmed = models.BooleanField(default=False)
     cancelled = models.BooleanField(default=False)
 
-    comments = models.CharField(max_length=500)
+    comments = models.CharField(max_length=500, blank=True, default=None, null=True)
 
 
 class Reception(models.Model):
