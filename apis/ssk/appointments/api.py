@@ -54,7 +54,10 @@ class MediAvailabilityResource(ModelResource):
         queryset = MediAvailability.objects.all()
         authorization = Authorization()
         resource_name = "mediavailability"
-        filtering = {"medi": ALL_WITH_RELATIONS,}
+        filtering = {"medi": ALL_WITH_RELATIONS,
+                     "start_time": ['gte', 'lte'],
+                     "end_time": ['gte', 'lte'],
+                     }
 
 
 class ReceptionResource(ModelResource):
