@@ -1,6 +1,7 @@
 certifi==2018.4.16
 chardet==3.0.4
 Django==2.0.7
+django-cors-headers==2.3.0
 django-tastypie==0.14.1
 idna==2.7
 pkg-resources==0.0.0
