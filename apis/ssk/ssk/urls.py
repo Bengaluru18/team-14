@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url, include
+
+from appointments.api import MediResource
+
+mediResource = MediResource()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # url(r'^blog/', include('myapp.urls')),
+    url(r'^api/', include(mediResource.urls)),
 ]
