@@ -22,7 +22,13 @@ class MediResource(ModelResource):
         queryset = Medi.objects.all()
         authorization = Authorization()
         resource_name = "medi"
-        filtering = {"id":ALL,}
+        filtering = {
+            "id": ALL,
+            "user": ALL_WITH_RELATIONS,
+            "name": ALL,
+            "phone": ALL,
+            "spec": ALL,
+        }
 
 
 class PatientResource(ModelResource):
@@ -32,6 +38,14 @@ class PatientResource(ModelResource):
         queryset = Patient.objects.all()
         authorization = Authorization()
         resource_name = "patient"
+        filtering = {
+            "id": ALL,
+            "user": ALL_WITH_RELATIONS,
+            "name": ALL,
+            "age": ALL,
+            "phone": ALL,
+            "address": ALL,
+        }
 
 
 class AppointmentResource(ModelResource):
@@ -43,11 +57,15 @@ class AppointmentResource(ModelResource):
         queryset = Appointment.objects.all()
         authorization = Authorization()
         resource_name = "appointment"
-        filtering = {"medi": ALL_WITH_RELATIONS,
-                     "patient": ALL_WITH_RELATIONS,
-                     "start_time": ['gte', 'lte'],
-                     "end_time": ['gte', 'lte'],
-                     }
+        filtering = {
+            "id": ALL,
+            "medi": ALL_WITH_RELATIONS,
+            "patient": ALL_WITH_RELATIONS,
+            "start_time": ['gte', 'lte'],
+            "end_time": ['gte', 'lte'],
+            "cancelled": ALL,
+            "confirmed": ALL,
+        }
 
 
 class MediAvailabilityResource(ModelResource):
@@ -58,10 +76,12 @@ class MediAvailabilityResource(ModelResource):
         queryset = MediAvailability.objects.all()
         authorization = Authorization()
         resource_name = "mediavailability"
-        filtering = {"medi": ALL_WITH_RELATIONS,
-                     "start_time": ['gte', 'lte'],
-                     "end_time": ['gte', 'lte'],
-                     }
+        filtering = {
+            "id": ALL,
+            "medi": ALL_WITH_RELATIONS,
+            "start_time": ['gte', 'lte'],
+            "end_time": ['gte', 'lte'],
+        }
 
 
 class ReceptionResource(ModelResource):
@@ -71,6 +91,12 @@ class ReceptionResource(ModelResource):
         queryset = Reception.objects.all()
         authorization = Authorization()
         resource_name = "reception"
+        filtering = {
+            "user": ALL_WITH_RELATIONS,
+            "name": ALL,
+            "phone": ALL,
+            "id": ALL,
+        }
 
 
 class SocialWorkerResource(ModelResource):
@@ -80,3 +106,9 @@ class SocialWorkerResource(ModelResource):
         queryset = SocialWorker.objects.all()
         authorization = Authorization()
         resource_name = "socialworker"
+        filtering = {
+            "user": ALL_WITH_RELATIONS,
+            "name": ALL,
+            "phone": ALL,
+            "id": ALL,
+        }
