@@ -8,6 +8,8 @@ angular.module('todoController', [])
 		$scope.temp;
 		$scope.finalAppointment = {};
 		$scope.freeSlots = {};
+		$scope.freeSlotsAdd = {};
+		$scope.doctor = {};
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -36,11 +38,12 @@ angular.module('todoController', [])
 
 		mediId=1;
 
-		// Todos.get(mediId,day,nextDay)
-		// 	.success(function(data){
-		// 		console.log(data);
+		Todos.get(mediId)
+			.success(function(data){
+				console.log(data);
+				$scope.doctor = data.objects;
 				
-		// 	});
+			});
 
 			Todos.getFreeSlots(mediId,day,nextDay)
 			.success(function(data){
@@ -66,6 +69,27 @@ angular.module('todoController', [])
 			$scope.loading = false;
 			
 		});
+
+		$scope.createFreeSlot = function(freeSlotsAdd) {
+			console.log()
+			freeSlotsAdd.medi__id = $scope.doctor[0].id;
+			var temparray = freeSlotsAdd.startTime.split('-');
+			var timetemp = temparray[2].split('T');
+			freeSlotsAdd.startTime = temparray[0]+'-'+temparray[1]+'-'+timetemp[0]+'T'+timetemp[1];
+			var temparray = freeSlotsAdd.endTime.split('-');
+			var timetemp = temparray[2].split('T');
+			freeSlotsAdd.endTime = temparray[0]+'-'+temparray[1]+'-'+timetemp[0]+'T'+timetemp[1];
+			console.log(freeSlotsAdd.startTime);
+			Todos.createFreeSlot(freeSlotsAdd)
+				.success(function(data){
+					Todos.getFreeSlots(mediId,day,nextDay)
+			.success(function(data){
+				console.log(data);
+				$scope.freeSlots = data.objects;
+			});
+				});
+			
+		}
 
 
 		

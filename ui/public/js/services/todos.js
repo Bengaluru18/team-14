@@ -4,7 +4,7 @@ angular.module('todoService', [])
 	// each function returns a promise object 
 	.factory('Todos', ['$http',function($http) {
 		return {
-			get : function(mediId,day,nextDay) {
+			get : function(mediId) {
 				return $http.get('http://54.254.144.216:8000/api/v1/medi?medi__id='+mediId);
 			},
 			getFreeSlots : function(mediId,day,nextDay) {
@@ -17,8 +17,8 @@ angular.module('todoService', [])
 				
 				return $http.get('http://54.254.144.216:8000'+patientId);
 			},
-			create : function(todoData) {
-				return $http.post('/api/smarthome', todoData);
+			createFreeSlot : function(todoData) {
+				return $http.post('http://54.254.144.216:8000/api/v1/mediavailability', todoData);
 			},
 			delete : function(id) {
 				return $http.delete('/api/smarthome/' + id);

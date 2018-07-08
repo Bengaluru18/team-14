@@ -9,6 +9,7 @@
 
 	<title>team 14</title>
 
+	
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -126,10 +127,11 @@
 		<h1>Free Slots <span class="label label-info"></span></h1>
 	<form>
 			Start Time
-			<input type="datetime-local" name="startTime">
+			<input type="datetime-local" name="startTime" ng-model="freeSlotAdd.startTime">
 			End Time
-			<input type="datetime-local" name="endTime">
+			<input type="datetime-local" name="endTime" ng-model="freeSlotAdd.endTime">
 			<button type="submit" class="btn btn-primary btn-lg" ng-click="createFreeSlot(freeSlotAdd)">Edit</button>
+			
 	</form>
 
 
