@@ -1,0 +1,99 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>team 14</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Appointments <span class="label label-info"></span></h1>
+		</div>
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			
+
+				
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				
+				<div class="container">
+  <div class="panel" style="overflow-x:scroll;height:520px;">
+    <table class="table table-bordered table-striped header-fixed" style="border-collapse:collapse;" >
+      <thead class="proTable">
+        <colgroup>
+          <th class="col-sm-1"> Temperature </th>
+          <th class="col-sm-1"> Gas </th>
+          <th class="col-sm-1"> is Fan On ? </th>
+          <th class="col-sm-1"> </th>
+          <th class="col-sm-1"> is light On ? </th>
+          <th class="col-sm-1"> </th>
+        </colgroup>
+      </thead>
+      <tbody  ng-repeat="todo in parking track by $index" >
+        <tr>
+          <td> {{todo.temprature}} </td>
+          <td> {{todo.gasReading}} </td>
+          <td> {{todo.fan}} </td>
+          <td> 
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffFan(todo._id)" ng-if="(todo.fan == true)">Turn Off</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnFan(todo._id)" ng-if="(todo.fan == false)">Turn On</button>
+          </td> 
+          <td> {{todo.light}} </td>
+          <td> 
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffLight(todo._id)" ng-if="(todo.light == true)">Turn Off</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnLight(todo._id)" ng-if="(todo.light == false)">Turn On</button>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		
+
+
+	</div>
+	<div>
+    <a href="https://plot.ly/~uniaditya/23/?share_key=I09JyJKbLtWn96M9yabQoK" target="_blank" title="temp-sensor" style="display: block; text-align: center;"><img src="https://plot.ly/~uniaditya/23.png?share_key=I09JyJKbLtWn96M9yabQoK" alt="temp-sensor" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="uniaditya:23" sharekey-plotly="I09JyJKbLtWn96M9yabQoK" src="https://plot.ly/embed.js" async></script>
+</div>
+
+
+</body>
+</html>
