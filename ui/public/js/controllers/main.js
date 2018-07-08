@@ -3,7 +3,11 @@ angular.module('todoController', [])
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
-		$scope.loading = true;
+		$scope.loading = false;
+		$scope.Appointment = {};
+		$scope.temp;
+		$scope.finalAppointment = {};
+		$scope.freeSlots = {};
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -32,22 +36,35 @@ angular.module('todoController', [])
 
 		mediId=1;
 
-		Todos.get(mediId,day,nextDay)
-			.success(function(data){
-				console.log(data);
-			});
+		// Todos.get(mediId,day,nextDay)
+		// 	.success(function(data){
+		// 		console.log(data);
+				
+		// 	});
 
-			Todos.getAppointment(mediId,day,nextDay)
+			Todos.getFreeSlots(mediId,day,nextDay)
 			.success(function(data){
 				console.log(data);
+				$scope.freeSlots = data.objects;
 			});
-			Todos.getAppointment1(mediId,day,nextDay)
-			.success(function(data){
-				console.log(data);
-				Todos.getPatient(data.objects[0].patient)
-					.success(function(data){
-					console.log(data);
-				});
+			Todos.getAppointment(mediId,day,nextDay)
+			.success(async function(data){
+				$scope.Appointment = data.objects;
+				for(var i =0 ;i<data.objects.length;++i){
+				await	 Todos.getPatient(data.objects[i].patient)
+						.success(function(data){
+							
+							$scope.temp = data.name;
+							
+						});
+				
+				$scope.Appointment[i].patientName = $scope.temp;
+				console.log($scope.Appointment[i]);
+
+			}
+			$scope.finalAppointment = $scope.Appointment;
+			$scope.loading = false;
+			
 		});
 
 

@@ -45,54 +45,103 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				
 				<div class="container">
-  <div class="panel" style="overflow-x:scroll;height:520px;">
+  <div class="panel" style="overflow-x:scroll;">
     <table class="table table-bordered table-striped header-fixed" style="border-collapse:collapse;" >
       <thead class="proTable">
         <colgroup>
-          <th class="col-sm-1"> Temperature </th>
-          <th class="col-sm-1"> Gas </th>
-          <th class="col-sm-1"> is Fan On ? </th>
-          <th class="col-sm-1"> </th>
-          <th class="col-sm-1"> is light On ? </th>
+          <th class="col-sm-1"> ID </th>
+          <th class="col-sm-1"> Comments </th>
+          <th class="col-sm-1"> Start Time</th>
+          <th class="col-sm-1"> End Time</th>
           <th class="col-sm-1"> </th>
         </colgroup>
       </thead>
-      <tbody  ng-repeat="todo in parking track by $index" >
+      <tbody  ng-repeat="todo in Appointment track by $index" >
         <tr>
-          <td> {{todo.temprature}} </td>
-          <td> {{todo.gasReading}} </td>
-          <td> {{todo.fan}} </td>
+          <td> {{todo.id}} </td>
+					<td> {{todo.comments}} </td>
+					<td> {{todo.start_time}}</td>
+					<td> {{todo.end_time}}</td>
           <td> 
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffFan(todo._id)" ng-if="(todo.fan == true)">Turn Off</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffFan(todo._id)">Get Detail</button>
             <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnFan(todo._id)" ng-if="(todo.fan == false)">Turn On</button>
           </td> 
-          <td> {{todo.light}} </td>
-          <td> 
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffLight(todo._id)" ng-if="(todo.light == true)">Turn Off</button>
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnLight(todo._id)" ng-if="(todo.light == false)">Turn On</button>
-          </td> 
+          
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
+				
 
 			
 		</div>
 
 		<!-- FORM TO CREATE TODOS -->
+		<div class="jumbotron text-center">
+			<h1>Free Slots <span class="label label-info"></span></h1>
+		</div>
+
+		<div id="todo-list" class="row">
+			
+
+				
+
+			<!-- LOOP OVER THE TODOS IN $scope.todos -->
+			
+			<div class="container">
+<div class="panel" style="overflow-x:scroll;">
+	<table class="table table-bordered table-striped header-fixed" style="border-collapse:collapse;" >
+		<thead class="proTable">
+			<colgroup>
+				<th class="col-sm-1"> ID </th>
+				<th class="col-sm-1"> Start Time</th>
+				<th class="col-sm-1"> End Time</th>
+				<th class="col-sm-1"> </th>
+				<th class="col-sm-1"> </th>
+				
+			</colgroup>
+		</thead>
+		<tbody  ng-repeat="todo in freeSlots track by $index" >
+			<tr>
+				<td> {{todo.id}} </td>
+				
+				<td> {{todo.start_time}}</td>
+				<td> {{todo.end_time}}</td>
+				<td> 
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffFan(todo._id)">Edit</button>
+					
+				</td>
+				<td>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnFan(todo._id)" >Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+
+<div class="container">
+		<h1>Free Slots <span class="label label-info"></span></h1>
+	<form>
+			Start Time
+			<input type="datetime-local" name="startTime">
+			End Time
+			<input type="datetime-local" name="endTime">
+			<button type="submit" class="btn btn-primary btn-lg" ng-click="createFreeSlot(freeSlotAdd)">Edit</button>
+	</form>
+
+
+</div>
+
+			
 		
+	</div>
 
 
 	</div>
-	<div>
-    <a href="https://plot.ly/~uniaditya/23/?share_key=I09JyJKbLtWn96M9yabQoK" target="_blank" title="temp-sensor" style="display: block; text-align: center;"><img src="https://plot.ly/~uniaditya/23.png?share_key=I09JyJKbLtWn96M9yabQoK" alt="temp-sensor" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
-    <script data-plotly="uniaditya:23" sharekey-plotly="I09JyJKbLtWn96M9yabQoK" src="https://plot.ly/embed.js" async></script>
-</div>
+	
 
 
 </body>
