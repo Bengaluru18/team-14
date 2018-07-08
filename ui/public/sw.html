@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="swApp">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -9,7 +9,7 @@
 
 	<title>team 14</title>
 
-	
+
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -39,12 +39,12 @@
 
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
-			
 
-				
+
+
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				
+
 				<div class="container">
   <div class="panel" style="overflow-x:scroll;">
     <table class="table table-bordered table-striped header-fixed" style="border-collapse:collapse;" >
@@ -63,20 +63,20 @@
 					<td> {{todo.comments}} </td>
 					<td> {{todo.start_time}}</td>
 					<td> {{todo.end_time}}</td>
-          <td> 
+          <td>
             <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOffFan(todo._id)">Get Detail</button>
             <button type="submit" class="btn btn-primary btn-lg" ng-click="turnOnFan(todo._id)" ng-if="(todo.fan == false)">Turn On</button>
-          </td> 
-          
+          </td>
+
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-				
 
-			
+
+
 		</div>
 
 		<!-- FORM TO CREATE TODOS -->
@@ -85,12 +85,12 @@
 		</div>
 
 		<div id="todo-list" class="row">
-			
 
-				
+
+
 
 			<!-- LOOP OVER THE TODOS IN $scope.todos -->
-			
+
 			<div class="container">
 <div class="panel" style="overflow-x:scroll;">
 	<table class="table table-bordered table-striped header-fixed" style="border-collapse:collapse;" >
@@ -101,20 +101,20 @@
 				<th class="col-sm-1"> End Time</th>
 				<th class="col-sm-1"> </th>
 				<th class="col-sm-1"> </th>
-				
+
 			</colgroup>
 		</thead>
 		<tbody  ng-repeat="todo in freeSlots track by $index" >
 			<tr>
 				<td> {{todo.id}} </td>
-				
+
 				<td> <input type="datetime-local" name="startTime" ng-model="todo.start_time" ng-disabled="edit"></td>
 
 				<td> <input type="datetime-local" name="endTime" ng-model="todo.end_time" ng-disabled="edit"></td>
-				<td> 
+				<td>
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="editFreeSlot(todo.id)" ng-if="(edit == true)">Edit</button>
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="editFreeSlotSave(todo)" ng-if="(edit == false)">Save</button>
-					
+
 				</td>
 				<td>
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="deleteFreeSlot(todo.id)" >Delete</button>
@@ -133,19 +133,19 @@
 			End Time
 			<input type="datetime-local" name="endTime" ng-model="freeSlotAdd.end_time">
 			<button type="submit" class="btn btn-primary btn-lg" ng-click="createFreeSlot(freeSlotAdd)">ADD Slot</button>
-			
+
 	</form>
 
 
 </div>
 
-			
-		
+
+
 	</div>
 
 
 	</div>
-	
+
 
 
 </body>
